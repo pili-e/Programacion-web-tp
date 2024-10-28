@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sacar turno</title>
+    <link rel="stylesheet" href="peluqueriastyle.css">
+</head>
+<body>
+    <div class="anuncio" id="anuncio"></div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container-header">
+            <!-- nombre -->
+            <div class="nombre">
+                <h1>ONDAS URBANAS</h1>
+            </div>
+
+            <!-- navegacion -->
+            <nav class="navbar">
+                <a href="index.html">Inicio</a>
+                <a href="sacar-turno.html">Sacar Turno</a>
+                <a href="servicios.html" id="mostrar-servicios">Servicios</a>
+                <a href="https://pin.it/77kDfcLPh" target="_blank" rel="noopener noreferrer">Nuestro pinterest</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- SECCION TURNOS -->
+    <section id="turnos" style="display: block;">   
+        <div class="gestion-turnos">
+            <h2>Gestión de turnos</h2>
+        </div>
+        <div class="grid-turnos" id="opciones-turnos">
+            <a id="btn-reservar" href="reservar-turno.html">Reservar turno</a>
+            <a id="btn-modificar" href="modificar-turno.html">Modificar turno</a>
+            <a id="btn-cancelar" href="cancelar-turno.html">Cancelar turno</a>
+        </div>
+
+            <!-- formulario modificar turno -->
+        <div class="turnos">
+            <form id="form-modificar" style="display:block;">
+                <h2>Modificar Turno</h2>
+                <label for="nombre-modificar">Nombre y apellido:</label>
+                <input type="text" id="nombre-modificar" required>
+            
+                <label for="id-reserva-modificar">ID de la reserva:</label>
+                <input type="text" id="id-reserva-modificar" required>
+            
+                <label for="nueva-fecha">Nueva fecha:</label>
+                <input type="date" id="nueva-fecha" required>
+            
+                <label for="nueva-hora">Nuevo horario:</label>
+                <input type="time" id="nueva-hora" required>
+            
+                <button type="button" id="confirmar-modificacion">Modificar Turno</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Agregar al final de cada HTML antes del script -->
+<footer class="footer" id="contacto">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+            <p><i class="fas fa-envelope"></i> info@ondasurbanas.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Av. Ejemplo 123, Buenos Aires</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Horarios</h3>
+            <p>Lunes a Viernes: 9:00 - 20:00</p>
+            <p>Sábados: 9:00 - 18:00</p>
+            <p>Domingos: Cerrado</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Seguinos en nuestras redes</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Ondas Urbanas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <!-- FUNCIONALIDAD CON JS -->
+    <script src="peluqueria.js"></script>
+</body>
+</html>

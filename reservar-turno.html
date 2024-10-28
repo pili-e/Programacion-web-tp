@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sacar turno</title>
+    <link rel="stylesheet" href="peluqueriastyle.css">
+</head>
+<body>
+    <div class="anuncio" id="anuncio"></div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container-header">
+            <!-- nombre -->
+            <div class="nombre">
+                <h1>ONDAS URBANAS</h1>
+            </div>
+
+            <!-- navegacion -->
+            <nav class="navbar">
+                <a href="index.html">Inicio</a>
+                <a href="sacar-turno.html">Sacar Turno</a>
+                <a href="servicios.html" id="mostrar-servicios">Servicios</a>
+                <a href="https://pin.it/77kDfcLPh" target="_blank" rel="noopener noreferrer">Nuestro pinterest</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- SECCION TURNOS -->
+    <section id="turnos" style="display: block;">   
+        <div class="gestion-turnos">
+            <h2>Gestión de turnos</h2>
+        </div>
+        <div class="grid-turnos" id="opciones-turnos">
+            <a id="btn-reservar" href="reservar-turno.html">Reservar turno</a>
+            <a id="btn-modificar" href="modificar-turno.html">Modificar turno</a>
+            <a id="btn-cancelar" href="cancelar-turno.html">Cancelar turno</a>
+        </div>
+
+        <!-- formulario reservar turno -->
+        <div class="turnos">
+            <form id="form-reservar" style="display: block;">
+                <h2>Reservar turno</h2>
+                
+                <label for="nombre-reserva">Nombre y apellido:</label>
+                <input type="text" id="nombre-reserva" required>
+                
+                <label>Servicios:</label>
+                <div class="servicios-container">
+                    <div class="servicios-grupo">
+                        <h4>Cortes y peinados</h4>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="corte" name="servicios" value="corte" data-precio="14000">
+                                <label for="corte">Corte - $14000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="planchita" name="servicios" value="planchita" data-precio="8000">
+                                <label for="planchita">Planchita - $8000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ondas" name="servicios" value="ondas" data-precio="12000">
+                                <label for="ondas">Ondas - $12000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="trenzas" name="servicios" value="trenzas" data-precio="20000">
+                                <label for="trenzas">Trenzas - desde $20000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="peinados-recogidos" name="servicios" value="peinados-recogidos" data-precio="25000">
+                                <label for="peinados-recogidos">Peinados recogidos - desde $25000</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-grupo">
+                        <h4>Coloración</h4>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cambio-color" name="servicios" value="cambio-color" data-precio="80000">
+                                <label for="cambio-color">Cambio de color - desde $80000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tono-sobre-tono" name="servicios" value="tono-sobre-tono" data-precio="50000">
+                                <label for="tono-sobre-tono">Tono sobre tono - desde $50000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="color-raiz" name="servicios" value="color-raiz" data-precio="40000">
+                                <label for="color-raiz">Color raíz - $40000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mechas" name="servicios" value="mechas" data-precio="60000">
+                                <label for="mechas">Mechas - desde $60000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="iluminaciones" name="servicios" value="iluminaciones" data-precio="60000">
+                                <label for="iluminaciones">Iluminaciones - desde $60000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="reflejos" name="servicios" value="reflejos" data-precio="60000">
+                                <label for="reflejos">Reflejos - desde $60000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="balayage" name="servicios" value="balayage" data-precio="60000">
+                                <label for="balayage">Balayage - desde $60000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="baño-luz" name="servicios" value="baño-luz" data-precio="60000">
+                                <label for="baño-luz">Baño de luz - desde $60000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="arreglos-color" name="servicios" value="arreglos-color" data-precio="70000">
+                                <label for="arreglos-color">Arreglos de color - desde $70000</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-grupo">
+                        <h4>Tratamientos</h4>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alisado" name="servicios" value="alisado" data-precio="40000">
+                                <label for="alisado">Alisado - desde $40000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="shock-keratina" name="servicios" value="shock-keratina" data-precio="45000">
+                                <label for="shock-keratina">Shock de keratina - desde $45000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ampolla-hidratacion" name="servicios" value="ampolla-hidratacion" data-precio="25000">
+                                <label for="ampolla-hidratacion">Ampolla de hidratación - $25000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ampolla-reparacion" name="servicios" value="ampolla-reparacion" data-precio="25000">
+                                <label for="ampolla-reparacion">Ampolla de reparación - $25000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nutricion" name="servicios" value="nutricion" data-precio="60000">
+                                <label for="nutricion">Nutrición capilar - $60000</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resumen-precio">
+                    <h4>Resumen de servicios</h4>
+                    <div id="servicios-seleccionados"></div>
+                    <div class="totales">
+                        <p>Total: <span id="precio-total">$0</span></p>
+                        <p>Seña (20%): <span id="precio-sena">$0</span></p>
+                    </div>
+                </div>
+                <div class="seleccion-turno">
+                    <div class="fecha-selector">
+                        <label for="fecha-reserva">Selecciona el día:</label>
+                        <input type="date" id="fecha-reserva" min="" required>
+                    </div>
+                    
+                    <div class="horarios-disponibles">
+                        <label>Horarios disponibles:</label>
+                        <div id="lista-horarios" class="grid-horarios">
+                            <!-- Los horarios se generarán dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>  
+
+    <!-- Agregar al final de cada HTML antes del script -->
+<footer class="footer" id="contacto">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+            <p><i class="fas fa-envelope"></i> info@ondasurbanas.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Av. Ejemplo 123, Buenos Aires</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Horarios</h3>
+            <p>Lunes a Viernes: 9:00 - 20:00</p>
+            <p>Sábados: 9:00 - 18:00</p>
+            <p>Domingos: Cerrado</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Seguinos en nuestras redes</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Ondas Urbanas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <!-- FUNCIONALIDAD CON JS -->
+    <script src="peluqueria.js"></script>
+</body>
+</html>
