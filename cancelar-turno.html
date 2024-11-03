@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sacar turno</title>
+    <title>Ondas Urbanas</title>
     <link rel="stylesheet" href="peluqueriastyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="anuncio" id="anuncio"></div>
     <!-- HEADER -->
     <header class="header">
         <div class="container-header">
-            <!-- nombre -->
             <div class="nombre">
                 <h1>ONDAS URBANAS</h1>
             </div>
-
-            <!-- navegacion -->
             <nav class="navbar">
                 <a href="index.html">Inicio</a>
                 <a href="sacar-turno.html">Sacar Turno</a>
@@ -24,54 +22,57 @@
                 <a href="https://pin.it/77kDfcLPh" target="_blank" rel="noopener noreferrer">Nuestro pinterest</a>
                 <a href="#contacto">Contacto</a>
             </nav>
-
         </div>
     </header>
 
+    <main>
+        <h2 class="titulo-pagina">Gestionar Turnos</h2>
+        <section id="turnos">   
+            <div class="grid-turnos">
+                <a href="reservar-turno.html">Reservar turno</a>
+                <a href="modificar-turno.html">Modificar turno</a>
+                <a href="cancelar-turno.html">Cancelar turno</a>
+            </div>
 
-    <!-- SECCION TURNOS -->
-    <section id="turnos" style="display: block;">   
-        <div class="gestion-turnos">
-            <h2>Gestión de turnos</h2>
-        </div>
-        <div class="grid-turnos" id="opciones-turnos">
-            <a id="btn-reservar" href="reservar-turno.html">Reservar turno</a>
-            <a id="btn-modificar" href="modificar-turno.html">Modificar turno</a>
-            <a id="btn-cancelar" href="cancelar-turno.html">Cancelar turno</a>
-        </div>
+            <div class="turnos">
+                <form id="form-modificar" style="display: block;">
+                    <h2>Cancelar turno</h2>
+                    
+                    <!-- Paso 1: Buscar reserva -->
+                    <div id="buscar-reserva">
+                        <label for="id-reserva-cancelar">ID de la reserva:</label>
+                        <input type="text" id="id-reserva-cancelar" required>
+                        <button type="button" id="buscar-turno-cancelar" class="btn-pago">Buscar Turno</button>
+                    </div>
 
-            <!-- formulario cancelar turno -->
-        <div class="turnos">
-            <form id="form-cancelar" style="display:block;">
-                <h2>Cancelar turno</h2>
-                <label for="nombre-cancelar">Nombre y apellido:</label>
-                <input type="text" id="nombre-cancelar" required>
-            
-                <label for="id-reserva-cancelar">ID de la reserva:</label>
-                <input type="text" id="id-reserva-cancelar" required>
-            
-                <button type="button" id="confirmar-cancelacion">Cancelar Turno</button>
-            </form>
-        </div>
-    </section>  
+                    <!-- Paso 2: Mostrar detalles y confirmar cancelación -->
+                    <div id="detalles-turno" class="resumen-precio" style="display: none;">
+                        <h4>Detalles del turno</h4>
+                        <div id="info-turno"></div>
+                        <div class="continuar-pago">
+                            <button type="button" id="confirmar-cancelacion" class="btn-pago">Confirmar Cancelación</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>  
+    </main>
 
-    <!-- Agregar al final de cada HTML antes del script -->
     <footer class="footer" id="contacto">
         <div class="footer-content">
             <div class="footer-section">
-                    <h3>Contacto</h3>
+                <h3>Contacto</h3>
                 <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
                 <p><i class="fas fa-envelope"></i> info@ondasurbanas.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Av. Ejemplo 123, Buenos Aires</p>
             </div>
-        
+            
             <div class="footer-section">
                 <h3>Horarios</h3>
-                <p>Lunes a Viernes: 9:00 - 20:00</p>
-                <p>Sábados: 9:00 - 18:00</p>
+                <p>Lunes a Sábados: 9:00 - 17:00</p>
                 <p>Domingos: Cerrado</p>
             </div>
-        
+            
             <div class="footer-section">
                 <h3>Seguinos en nuestras redes</h3>
                 <div class="social-links">
@@ -86,7 +87,6 @@
         </div>
     </footer>
 
-    <!-- FUNCIONALIDAD CON JS -->
     <script src="peluqueria.js"></script>
 </body>
 </html>

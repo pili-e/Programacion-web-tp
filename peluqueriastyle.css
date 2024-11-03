@@ -20,6 +20,10 @@ body {
   --peanut: #795c34;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 /* Anuncios */
 .anuncio {
@@ -82,7 +86,7 @@ body {
 /* CARRUSEL */
 .carrusel-container {
   width: 100%;
-  height: 500px;
+  height: 600px;
   margin-bottom: 50px;
   overflow: hidden;
 }
@@ -94,80 +98,20 @@ body {
 }
 
 .slide {
-  min-width: 50%;
+  min-width: 33.33%;
   transition: transform 1s ease;
 }
 
 .slide img {
   width: 100%;
-  height: 500px;
+  height: 600px;
   object-fit: cover;
   display: block;
 }
 
 
 
-/* BIENVENIDA */
-.bienvenida {
-  text-align: center;
-  margin: 20px auto;
-  max-width: 800px;
-  line-height: 1.6;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: var(--color-secundario);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-#imagenes-peluqueria {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-#imagenes-peluqueria img {
-  width: 500px; /* Tamaño fijo para todas las imágenes */
-  height: 400px; /* Tamaño fijo para todas las imágenes */
-  object-fit: cover; /* Recorta la imagen para ajustarla al tamaño sin distorsión */
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-#imagenes-peluqueria img:hover {
-  transform: scale(1.05); /* Efecto de zoom suave al pasar el mouse */
-}
-
-#pinterest {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-#pinterest a {
-  text-decoration: none;
-  color: var(--color-primario);
-  transition: color 0.3s;
-}
-
-#pinterest a:hover {
-  color: var(--color-texto);
-}
-
-.productos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.productos img {
-  width: 150px;
-  transition: transform 0.3s ease;
-}
-
-.productos img:hover {
-  transform: scale(1.1);
-}
 
 
 
@@ -185,7 +129,7 @@ body {
   font-size: 24px;
   margin-bottom: 15px;
   font-weight: bold;
-  color: var(--color-primario);
+  color: var(--color-terciario);
 }
 
 .productos-logos img {
@@ -207,10 +151,6 @@ body {
   margin: 10px;
   background-color: var(--color-secundario);
   border-radius: 8px;
-  visibility: visible; 
-  height: auto;
-  opacity: 1;
-  overflow: visible;
 }
 
 #servicios p {
@@ -254,48 +194,11 @@ body {
   margin: 5px 0;
 }
 
-.servicio-lista {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.servicio-lista li {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-  padding: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.servicio-lista span:first-child {
-  text-align: left;
-}
-
-.servicio-lista span:last-child {
-  text-align: right;
-  font-weight: bold;
-}
-
-
-
-
-
-
-
 /* SACAR TURNOS HTML */
 #turnos {
   padding: 20px;
   margin: 10px;
-  background-color: var(--color-secundario);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-/* botones de opciones */
-.gestion-turnos {
-  margin: 10px
 }
 
 .grid-turnos {
@@ -303,22 +206,6 @@ body {
   justify-content: space-around;
   gap: 15px;
   margin-bottom: 20px;
-}
-
-.grid-turnos button {
-  background-color: var(--color-primario);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.grid-turnos button:hover {
-  background-color: var(--color-secundario);
-  color: var(--color-texto);
 }
 
 /* formularios de turnos */
@@ -367,30 +254,6 @@ body {
   color: var(--color-texto);
 }
 
-/* eleccion de servicios para reservar*/
-#servicios-reserva {
-  width: 100%; 
-  padding: 5px;
-  margin: 10px 0;
-  border: 1px solid var(--color-primario);
-  border-radius: 5px;
-  background-color: white;
-  font-size: 13px; 
-  color: var(--color-texto);
-  height: 250px; 
-  overflow-y: auto; /* permite scroll */
-}
-
-#servicios-reserva optgroup {
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-#servicios-reserva option {
-  padding: 5px;
-}
-
-
 .fecha-horario-seña {
   display: flex;
   justify-content: space-between;
@@ -410,12 +273,6 @@ body {
   width: 120px; /* tamaño del campo de fecha y hora */
 }
 
-#seña-info {
-  font-weight: bold;
-  margin: 0;
-}
-
-
 .grid-turnos a {
   text-decoration: none;
   background-color: var(--color-primario);
@@ -434,23 +291,26 @@ body {
   color: var(--color-texto);
 }
 
-section {
-  margin-top: 30px;
+/* COSAS COMUNES DE TODAS LAS PAGINAS*/
+.titulo-pagina {
+  text-align: center;
+  color: var(--color-primario);
+  margin: 30px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
-
-
-
 
 
 
 /* FOOTER */
 .footer {
-  background-color: var(--color-primario);
+  background-color: var(--color-fondo);
   color: white;
   padding: 40px 0 20px;
   margin-top: 50px;
   position: relative; /* Cambiado de fixed a relative */
+  border-top: 1px solid var(--color-secundario);
 }
 
 .footer-content {
@@ -468,18 +328,18 @@ section {
 }
 
 .footer-section h3 {
-  color: var(--color-secundario);
+  color: var(--color-terciario);
   margin-bottom: 20px;
   font-size: 1.2em;
 }
 
 .footer-section p {
   margin: 10px 0;
-  color: #fff;
+  color: var(--color-terciario);
 }
 
 .social-links a {
-  color: white;
+  color: var(--color-terciario);
   margin-right: 15px;
   font-size: 1.5em;
   text-decoration: none;
@@ -487,65 +347,16 @@ section {
 }
 
 .social-links a:hover {
-  color: var(--color-secundario);
+  color: var(--color-texto);
 }
 
 .footer-bottom {
   text-align: center;
+  color:var(--color-terciario);
   padding-top: 20px;
   margin-top: 20px;
   border-top: 1px solid var(--color-secundario);
 }
-
-@media (max-width: 768px) {
-  .footer-section {
-    flex: 100%;
-    text-align: center;
-  }
-}
-
-/* Agregar media queries para mejorar la visualización en móviles */
-@media (max-width: 768px) {
-    .container-header {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-    }
-
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    #imagenes-peluqueria {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #imagenes-peluqueria img {
-        width: 90%;
-        height: auto;
-    }
-
-    .grid-turnos {
-        flex-direction: column;
-    }
-
-    .grid-turnos a {
-        width: 80%;
-        margin: 5px auto;
-    }
-
-    .fecha-horario-seña {
-        flex-direction: column;
-    }
-
-    .slide {
-        min-width: 100%;
-    }
-}
-
 /* Agregar estos estilos */
 .servicios-container {
     display: flex;
@@ -613,17 +424,6 @@ section {
     border-radius: 4px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .servicios-container {
-        flex-direction: column;
-    }
-    
-    .servicios-grupo {
-        margin-bottom: 20px;
-    }
-}
-
 .resumen-precio {
     margin-top: 20px;
     padding: 20px;
@@ -677,11 +477,21 @@ section {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.fecha-selector {
-    margin-bottom: 20px;
+.seleccion-turno-container {
+    display: flex;
+    gap: 30px;
 }
 
-.fecha-selector label {
+.fecha-selector {
+    flex: 0 0 200px; /* Ancho fijo para el selector de fecha */
+}
+
+.horarios-disponibles {
+    flex: 1; /* Toma el espacio restante */
+}
+
+.fecha-selector label,
+.horarios-disponibles label {
     display: block;
     margin-bottom: 10px;
     color: var(--color-primario);
@@ -689,26 +499,15 @@ section {
 }
 
 .fecha-selector input {
+    width: 100%;
     padding: 8px;
     border: 1px solid var(--color-primario);
     border-radius: 4px;
-    width: 200px;
-}
-
-.horarios-disponibles {
-    margin-top: 20px;
-}
-
-.horarios-disponibles label {
-    display: block;
-    margin-bottom: 15px;
-    color: var(--color-primario);
-    font-weight: bold;
 }
 
 .grid-horarios {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 10px;
 }
 
@@ -736,3 +535,533 @@ section {
     cursor: not-allowed;
     border-color: #ddd;
 }
+
+.continuar-pago {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 20px;
+}
+
+.btn-pago {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pago:hover {
+    background-color: var(--color-secundario);
+}
+
+.servicios-seccion {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.servicio-categoria {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 40px;
+}
+
+.servicio-categoria:nth-child(2) {      /* alterno orden de las imagenes*/
+    flex-direction: row-reverse;
+}
+
+.servicio-info {
+    flex: 1;
+}
+
+.servicio-info h3 {
+    color: var(--color-primario);
+    margin-bottom: 20px;
+}
+
+.servicio-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.servicio-info li {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    padding: 10px;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.servicio-info li:hover {
+    transform: translateX(10px);
+    background-color: var(--color-secundario);
+}
+
+.servicio-imagen {
+    flex: 1;
+    max-width: 550px;
+}
+
+.servicio-imagen img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.servicio-imagen-color img {
+  width: 120%;
+  height: 470px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.titulo-servicios {
+  text-align: center;
+  color: var(--color-primario);
+  margin: 40px 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.imagenes-turnos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.imagenes-turnos img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.imagenes-turnos img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    flex: 100%;
+    text-align: center;
+  }
+  .container-header {
+      flex-direction: column;
+      text-align: center;
+      padding: 10px;
+  }
+
+  .navbar {
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+  }
+
+  .grid-turnos {
+      flex-direction: column;
+  }
+
+  .grid-turnos a {
+      width: 80%;
+      margin: 5px auto;
+  }
+
+  .fecha-horario-seña {
+      flex-direction: column;
+  }
+
+  .slide {
+      min-width: 100%;
+  }
+
+  .servicios-container {
+    flex-direction: column;
+  }
+
+  .servicios-grupo {
+    margin-bottom: 20px;
+  }
+
+  .seleccion-turno-container {
+    flex-direction: column;
+  }
+
+  .fecha-selector {
+      flex: none;
+      margin-bottom: 20px;
+  }
+  .servicio-categoria {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .servicio-imagen {
+      order: -1;
+      margin-bottom: 20px;
+  }
+
+  .servicio-info li:hover {
+      transform: none;
+  }
+
+  .titulo-servicios {
+    font-size: 2em;
+    margin: 30px 0;
+  }
+
+  .imagenes-turnos {
+    gap: 10px;
+  }
+
+.imagenes-turnos img {
+    width: 90%;
+    height: 350px;
+  }
+}
+
+#buscar-reserva {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+}
+
+#buscar-turno {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#buscar-turno:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+}
+
+#modificar-detalles {
+    margin-top: 20px;
+}
+
+/* Agregar estos estilos específicos */
+#info-turno {
+    padding: 0;
+}
+
+#info-turno ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#detalles-turno {
+    text-align: center;
+}
+
+#detalles-turno .continuar-pago {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de pago */
+.info-pago {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.info-pago-contenido {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.metodos-pago {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metodo {
+    text-align: center;
+}
+
+.qr-img {
+    max-width: 200px;
+    margin: 15px auto;
+    display: block;
+}
+
+.instrucciones-pago {
+    text-align: left;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--color-secundario);
+    border-radius: 8px;
+}
+
+.instrucciones-pago ol {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.instrucciones-pago li {
+    margin: 8px 0;
+}
+
+.datos-bancarios {
+    list-style: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.datos-bancarios li {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--color-secundario);
+}
+
+.datos-bancarios li:last-child {
+    border-bottom: none;
+}
+
+.instrucciones-pago {
+    background-color: var(--color-secundario);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.instrucciones-pago ol {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.instrucciones-pago li {
+    margin: 8px 0;
+}
+
+.btn-pago {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.btn-pago:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Mejorar el estilo del contenedor de pago */
+.continuar-pago {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* Mejorar el botón de pago */
+.btn-pago {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    display: block;
+}
+
+.btn-pago:hover {
+    background-color: var(--color-terciario);
+}
+
+.btn-pago:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Mejorar el resumen de pago */
+.info-pago-contenido {
+    background-color: var(--color-fondo);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Destacar el monto de la seña */
+#monto-sena {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-terciario);
+}
+
+/* Mejorar los datos bancarios */
+.datos-bancarios {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.datos-bancarios li {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-secundario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datos-bancarios li:last-child {
+    border-bottom: none;
+}
+
+/* Mejorar las instrucciones */
+.instrucciones-pago {
+    background-color: var(--color-secundario);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.instrucciones-pago ol {
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+.instrucciones-pago li {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+/* Agregar un estado de éxito */
+.reserva-exitosa {
+    background-color: #e7f3e8;
+    border: 1px solid #28a745;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilos para la página de confirmación */
+.confirmacion-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.confirmacion-container h2 {
+    text-align: center;
+    color: var(--color-terciario);
+    margin-bottom: 30px;
+}
+
+.detalles-turno, .info-pago-container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.monto-sena {
+    font-size: 1.2em;
+    color: var(--color-terciario);
+    margin: 20px 0;
+}
+
+.datos-transferencia {
+    margin: 25px 0;
+}
+
+.botones-confirmacion {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-volver, .btn-nuevo-turno {
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-volver {
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+}
+
+.btn-nuevo-turno {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-volver:hover, .btn-nuevo-turno:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Estilos para el resumen del turno */
+#resumen-turno ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#resumen-turno li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--color-secundario);
+}
+
+#resumen-turno li:last-child {
+    border-bottom: none;
+}
+
+.detalles-turno {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.detalles-turno h3 {
+    color: var(--color-terciario);
+    margin-bottom: 20px;
+}
+
+
