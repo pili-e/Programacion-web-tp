@@ -14,6 +14,7 @@
             <div class="nombre">
                 <h1>ONDAS URBANAS</h1>
             </div>
+            <!-- NAVBAR -->
             <nav class="navbar">
                 <a href="index.html">Inicio</a>
                 <a href="sacar-turno.html">Sacar Turno</a>
@@ -36,15 +37,13 @@
             <div class="turnos">
                 <form id="form-modificar" style="display: block;">
                     <h2>Modificar Turno</h2>
-                    
-                    <!-- Paso 1: Buscar reserva -->
+
                     <div id="buscar-reserva">
                         <label for="id-reserva-modificar">ID de la reserva:</label>
                         <input type="text" id="id-reserva-modificar" required>
                         <button type="button" id="buscar-turno">Buscar Turno</button>
                     </div>
 
-                    <!-- Paso 2: Modificar detalles (inicialmente oculto) -->
                     <div id="modificar-detalles" style="display: none;">
                         <label>Servicios:</label>
                         <div class="servicios-container">
@@ -161,9 +160,7 @@
                                 
                                 <div class="horarios-disponibles">
                                     <label>Horarios disponibles:</label>
-                                    <div id="lista-horarios" class="grid-horarios">
-                                        <!-- Los horarios se generarán dinámicamente -->
-                                    </div>
+                                    <div id="lista-horarios" class="grid-horarios"></div>
                                 </div>
 
                                 <div class="continuar-pago">
