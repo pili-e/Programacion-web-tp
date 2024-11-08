@@ -64,25 +64,30 @@ html {
 }
 
 /* NAVBAR */
-.navbar {
-  display: flex;
-  gap: 20px;
+
+.navbar-nav {
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.navbar a {
-  text-decoration: none;
-  color: var(--color-terciario);
-  font-size: 14px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
+.nav-link {
+    color: var(--color-texto) !important;
+    text-decoration: none;
+    padding: 10px !important;
+    transition: all 0.3s ease;
 }
 
-.navbar a:hover {
-  color: var(--color-texto);
+.nav-link:hover {
+    color: var(--color-terciario) !important;
 }
 
-
-
+.navbar-toggler {
+    background-color: var(--color-secundario);
+    border: none;
+    margin-right: 1rem;
+}
 /* CARRUSEL */
 .carrusel-container {
   width: 100%;
@@ -664,6 +669,48 @@ html {
       margin-top: 10px;
   }
 
+  .container-header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar-nav {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .collapse:not(.show) {
+      display: none;
+  }
+
+  .navbar-nav {
+    gap: 10px;  /* Reduce el espacio entre links en móvil */
+  }
+
+  .nav-link {
+      padding: 8px !important;  /* Reduce el padding en móvil */
+      font-size: 0.9em;  /* Reduce ligeramente el tamaño de fuente */
+  }
+
+  .navbar-toggler {
+      padding: 4px 8px;  /* Ajusta el tamaño del botón hamburguesa */
+      margin-right: 0;  /* Elimina el margen derecho en móvil */
+  }
+
+  .container-fluid {
+      padding: 0;  /* Elimina el padding extra del contenedor */
+  }
+
+  /* Mejora el espaciado del menú desplegable */
+  .collapse.show {
+      margin-top: 10px;
+      background-color: var(--color-fondo);
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+
+
   .grid-turnos {
       flex-direction: column;
   }
@@ -1051,4 +1098,37 @@ html {
     margin-bottom: 20px;
 }
 
+@media (max-width: 991px) {
+  .container-header {
+      flex-direction: column;
+      padding: 10px;
+  }
 
+  .navbar-nav {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .collapse:not(.show) {
+      display: none;
+  }
+
+  .grid-turnos {
+      grid-template-columns: 1fr;
+  }
+
+  .servicios-container {
+      flex-direction: column;
+  }
+
+  .footer-content {
+      flex-direction: column;
+      text-align: center;
+  }
+}
+
+.navbar-toggler {
+  background-color: var(--color-secundario);
+  border: none;
+  margin-right: 1rem;
+}

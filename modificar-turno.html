@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondas Urbanas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">    <!-- bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">  <!-- font Awesome -->
     <link rel="stylesheet" href="peluqueriastyle.css">
 </head>
 <body>
@@ -15,12 +17,21 @@
                 <h1>ONDAS URBANAS</h1>
             </div>
             <!-- NAVBAR -->
-            <nav class="navbar">
-                <a href="index.html">Inicio</a>
-                <a href="sacar-turno.html">Sacar Turno</a>
-                <a href="servicios.html" id="mostrar-servicios">Servicios</a>
-                <a href="https://pin.it/77kDfcLPh" target="_blank" rel="noopener noreferrer">Nuestro pinterest</a>
-                <a href="#contacto">Contacto</a>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="navbar-nav">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                            <a class="nav-link" href="sacar-turno.html">Sacar Turno</a>
+                            <a class="nav-link" id="mostrar-servicios" href="servicios.html">Servicios</a>
+                            <a class="nav-link" href="https://pin.it/77kDfcLPh" target="_blank" rel="noopener noreferrer">Nuestro pinterest</a>
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -204,6 +215,9 @@
         </div>
     </footer>
 
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FUNCIONALIDAD CON JS -->
     <script src="peluqueria.js"></script>
 </body>
 </html>
