@@ -50,14 +50,16 @@
                     <h2>Modificar Turno</h2>
 
                     <div id="buscar-reserva">
-                        <label for="id-reserva-modificar">ID de la reserva:</label>
-                        <input type="text" id="id-reserva-modificar" required>
-                        <button type="button" id="buscar-turno">Buscar Turno</button>
+                        <div class="mb-3">
+                            <label for="id-reserva">Número de Reserva:</label>
+                            <input type="text" id="id-reserva" class="form-control" required>
+                            <button type="button" id="buscar-turno" class="btn-pago">Buscar Turno</button>
+                        </div>
                     </div>
-
+                    <div id="resumen-turno-actual" style="display: none;" class="mb-4"></div>
                     <div id="modificar-detalles" style="display: none;">
-                        <label>Servicios:</label>
                         <div class="servicios-container">
+                            <label>Servicios:</label>
                             <div class="servicios-grupo">
                                 <h4>Cortes y peinados</h4>
                                 <div class="checkbox-grupo">
@@ -152,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="resumen-precio">
                             <h4>Resumen de servicios</h4>
                             <div id="servicios-seleccionados"></div>

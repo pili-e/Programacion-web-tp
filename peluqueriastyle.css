@@ -66,7 +66,7 @@ html {
 /* NAVBAR */
 
 .navbar-nav {
-    gap: 20px;
+    gap: 10px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@ html {
 .nav-link {
     color: var(--color-texto) !important;
     text-decoration: none;
-    padding: 10px !important;
+    padding: 3px !important;
     transition: all 0.3s ease;
 }
 
@@ -507,35 +507,39 @@ html {
 }
 
 .grid-horarios {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .horario-btn {
-    padding: 10px;
-    border: 1px solid var(--color-primario);
-    border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 10px;
+  border: 1px solid var(--color-primario);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .horario-btn:hover {
-    background-color: var(--color-secundario);
+  background-color: var(--color-secundario);
 }
 
 .horario-btn.seleccionado {
-    background-color: var(--color-primario);
-    color: white;
+  background-color: var(--color-secundario);
+  color: white;
+  border-color: var(--color-secundario);
 }
 
 .horario-btn.no-disponible {
-    background-color: #f0f0f0;
-    color: #999;
-    cursor: not-allowed;
-    border-color: #ddd;
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+  border-color: #ddd;
 }
+
+
 
 .continuar-pago {
     display: flex;
@@ -551,11 +555,13 @@ html {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none !important;
 }
 
 .btn-pago:hover {
     background-color: var(--color-secundario);
 }
+
 
 .servicios-seccion {
     max-width: 1200px;
@@ -766,11 +772,17 @@ html {
     gap: 10px;
   }
 
-.imagenes-turnos img {
+  .imagenes-turnos img {
     width: 90%;
     height: 350px;
   }
+
+  #resumen-turno-actual {
+    margin: 15px 0;
+    padding: 15px;
+  }
 }
+
 
 #buscar-reserva {
     margin-bottom: 20px;
@@ -818,256 +830,134 @@ html {
     margin-top: 20px;
 }
 
+#resumen-turno-actual {
+  background-color: var(--color-fondo);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+
+#resumen-turno-actual h4 {
+  color: var(--color-primario);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+#resumen-turno-actual p {
+  margin-bottom: 8px;
+}
+
+#resumen-turno-actual ul {
+  list-style: none;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+#resumen-turno-actual .fw-bold {
+  color: var(--color-primario);
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid var(--color-secundario);
+}
+
+
 /* CONFIRMACION DE PAGO */
-.info-pago {
-    margin-top: 20px;
-    text-align: center;
+.card {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
-.info-pago-contenido {
-    max-width: 500px;
-    margin: 0 auto;
+.card-header {
+  border-bottom: 1px solid var(--color-secundario);
 }
 
-.metodos-pago {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.card-header h2 {
+  color: var(--color-terciario);
+  font-size: 1.8em;
 }
 
-.metodo {
-    text-align: center;
+.resumen-turno h3, form h3 {
+  color: var(--color-primario);
+  font-size: 1.3em;
+  margin-bottom: 1rem;
 }
 
-.qr-img {
-    max-width: 200px;
-    margin: 15px auto;
-    display: block;
+.form-label {
+  color: var(--color-primario);
+  font-weight: 500;
 }
 
-.instrucciones-pago {
-    text-align: left;
-    margin: 20px 0;
-    padding: 15px;
-    background-color: var(--color-secundario);
-    border-radius: 8px;
+.form-control:focus {
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 0.2rem rgba(231, 207, 188, 0.25);
 }
 
-.instrucciones-pago ol {
-    margin-left: 20px;
-    margin-top: 10px;
+.card {
+  height: 100%;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
-.instrucciones-pago li {
-    margin: 8px 0;
+.card-header {
+  border-bottom: 1px solid var(--color-secundario);
+  padding: 1.5rem;
 }
 
-.datos-bancarios {
-    list-style: none;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 15px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.card-header h3 {
+  color: var(--color-terciario);
+  font-size: 1.4em;
+  margin: 0;
 }
 
-.datos-bancarios li {
-    margin: 10px 0;
-    padding: 5px 0;
-    border-bottom: 1px solid var(--color-secundario);
+.card-body {
+  padding: 1.5rem;
 }
 
-.datos-bancarios li:last-child {
-    border-bottom: none;
+#resumen-turno {
+  font-size: 1.1em;
 }
 
-.instrucciones-pago {
-    background-color: var(--color-secundario);
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
+#resumen-turno ul {
+  margin: 1rem 0;
+  padding-left: 0;
 }
 
-.instrucciones-pago ol {
-    margin-left: 20px;
-    margin-top: 10px;
+#resumen-turno li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-secundario);
 }
 
-.instrucciones-pago li {
-    margin: 8px 0;
-}
-
-.btn-pago {
-    background-color: var(--color-primario);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 20px 0;
-}
-
-.btn-pago:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.continuar-pago {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-top: 20px;
-}
-
-.btn-pago {
-    background-color: var(--color-primario);
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto;
-    display: block;
-}
-
-.btn-pago:hover {
-    background-color: var(--color-terciario);
-}
-
-.btn-pago:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.info-pago-contenido {
-    background-color: var(--color-fondo);
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-#monto-sena {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--color-terciario);
-}
-
-.datos-bancarios {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 15px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.datos-bancarios li {
-    margin: 12px 0;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--color-secundario);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.datos-bancarios li:last-child {
-    border-bottom: none;
-}
-
-.instrucciones-pago {
-    background-color: var(--color-secundario);
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-.instrucciones-pago ol {
-    margin-left: 25px;
-    margin-top: 15px;
-}
-
-.instrucciones-pago li {
-    margin: 10px 0;
-    line-height: 1.4;
-}
-
-.reserva-exitosa {
-    background-color: #e7f3e8;
-    border: 1px solid #28a745;
-    color: #155724;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.confirmacion-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-.confirmacion-container h2 {
-    text-align: center;
-    color: var(--color-terciario);
-    margin-bottom: 30px;
-}
-
-.detalles-turno, .info-pago-container {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
-
-.monto-sena {
-    font-size: 1.2em;
-    color: var(--color-terciario);
-    margin: 20px 0;
-}
-
-.datos-transferencia {
-    margin: 25px 0;
-}
-
-.botones-confirmacion {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.btn-volver, .btn-nuevo-turno {
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
+#resumen-turno li:last-child {
+  border-bottom: none;
 }
 
 .btn-volver {
-    background-color: var(--color-secundario);
-    color: var(--color-texto);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primario);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-.btn-nuevo-turno {
-    background-color: var(--color-primario);
-    color: white;
+.btn-volver:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
 }
 
-.btn-volver:hover, .btn-nuevo-turno:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+.btn-volver i {
+  font-size: 0.9em;
 }
+
+
+
 
 /* RESUMEN DEL TURNO */
 #resumen-turno ul {
@@ -1097,6 +987,10 @@ html {
     color: var(--color-terciario);
     margin-bottom: 20px;
 }
+
+
+
+
 
 @media (max-width: 991px) {
   .container-header {
