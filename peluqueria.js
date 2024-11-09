@@ -366,7 +366,13 @@ function buscarReserva(id) {
 // cargar los datos de la reserva encontrada
 function cargarDatosReserva(reserva) {
     if (!reserva) {
-        alert('No se encontró la reserva');
+        Swal.fire({
+            icon: 'error',
+            title: 'Reserva no encontrada',
+            text: 'No se encontró la información de la reserva',
+            confirmButtonColor: '#726E60',
+            confirmButtonText: 'Aceptar'
+        });
         return false;
     }
 
@@ -424,7 +430,13 @@ function guardarModificaciones(idReserva) {
     const hora = document.querySelector('.horario-btn.seleccionado')?.dataset.hora;
 
     if (!fecha || !hora || serviciosSeleccionados.length === 0) {
-        alert('Por favor completa todos los campos');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: 'Por favor completa todos los campos requeridos',
+            confirmButtonColor: '#726E60',
+            confirmButtonText: 'Entendido'
+        });
         return false;
     }
 
@@ -445,7 +457,13 @@ function modificarTurno(idReserva) {
     const turnoIndex = turnosReservados.findIndex(turno => turno.id === idReserva);
     
     if (turnoIndex === -1) {
-        alert('No se encontró el turno con ese ID');
+        Swal.fire({
+            icon: 'error',
+            title: 'Turno no encontrado',
+            text: 'No se encontró ningún turno con el número de reserva ingresado',
+            confirmButtonColor: '#726E60',
+            confirmButtonText: 'Volver a intentar'
+        });
         return false;
     }
 
@@ -460,7 +478,13 @@ function modificarTurno(idReserva) {
     const nuevoHorario = document.querySelector('.horario-btn.seleccionado')?.dataset.hora;
 
     if (!nuevaFecha || !nuevoHorario || serviciosSeleccionados.length === 0) {
-        alert('Por favor completa todos los campos');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: 'Para modificar el turno, por favor completa la fecha, el horario y selecciona al menos un servicio',
+            confirmButtonColor: '#726E60',
+            confirmButtonText: 'Completar campos'
+        });
         return false;
     }
 
@@ -523,7 +547,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 actualizarPrecios();
             } else {
-                alert('No se encontró ningún turno con ese número de reserva');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Turno no encontrado',
+                    text: 'No se encontró ningún turno con ese número de reserva. Por favor, verifica el número ingresado.',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Intentar nuevamente'
+                });
             }
         });
     }
@@ -532,7 +562,13 @@ document.addEventListener('DOMContentLoaded', function() {
         btnConfirmarModificacion.addEventListener('click', function() {
             const idReserva = document.getElementById('id-reserva').value;
             if (modificarTurno(idReserva)) {
-                alert('Turno modificado exitosamente');
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Turno modificado!',
+                    text: 'Tu turno ha sido modificado exitosamente. Te esperamos en la nueva fecha y horario seleccionados.',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 window.location.href = 'sacar-turno.html';
             }
         });
@@ -588,7 +624,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 idTurnoActual = id;
                 mostrarDetallesTurno(turno);
             } else {
-                alert('No se encontró ningún turno con ese ID');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Turno no encontrado',
+                    text: 'No se encontró ningún turno con ese número de reserva. Por favor, verifica el número ingresado.',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Intentar nuevamente'
+                });
                 document.getElementById('detalles-turno').style.display = 'none';
             }
         });
@@ -598,10 +640,22 @@ document.addEventListener('DOMContentLoaded', function() {
         btnConfirmarCancelacion.addEventListener('click', function() {
             if (confirm('¿Estás seguro de que deseas cancelar este turno?')) {
                 if (cancelarTurno(idTurnoActual)) {
-                    alert('Turno cancelado exitosamente');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Turno cancelado',
+                        text: 'Tu turno ha sido cancelado exitosamente. ¡Esperamos verte pronto nuevamente!',
+                        confirmButtonColor: '#726E60',
+                        confirmButtonText: 'Aceptar'
+                    });
                     window.location.href = 'sacar-turno.html';
                 } else {
-                    alert('Hubo un error al cancelar el turno');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al cancelar',
+                        text: 'Hubo un problema al intentar cancelar el turno. Por favor, intenta nuevamente o contáctanos directamente.',
+                        confirmButtonColor: '#726E60',
+                        confirmButtonText: 'Intentar nuevamente'
+                    });
                 }
             }
         });
@@ -622,24 +676,48 @@ document.addEventListener('DOMContentLoaded', function() {
         btnPago.addEventListener('click', function() {
             const nombre = document.getElementById('nombre-reserva')?.value;
             if (!nombre) {
-                alert('Por favor ingresa tu nombre');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campo requerido',
+                    text: 'Por favor, ingresa tu nombre y apellido para continuar con la reserva',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
 
             const serviciosSeleccionados = document.querySelectorAll('input[name="servicios"]:checked');
             if (serviciosSeleccionados.length === 0) {
-                alert('Por favor selecciona al menos un servicio');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Selección requerida',
+                    text: 'Por favor, selecciona al menos un servicio para poder continuar con la reserva',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
 
             const fecha = document.getElementById('fecha-reserva')?.value;
             if (!fecha) {
-                alert('Por favor selecciona una fecha');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Fecha requerida',
+                    text: 'Por favor, selecciona una fecha para tu turno antes de continuar',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
 
             if (!window.horaSeleccionada) {
-                alert('Por favor selecciona una hora');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Horario requerido',
+                    text: 'Por favor, selecciona un horario disponible para tu turno',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
 
@@ -706,7 +784,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const serviciosSeleccionados = document.querySelectorAll('input[name="servicios"]:checked');
             
             if (!nombre || !fecha || serviciosSeleccionados.length === 0 || !window.horaSeleccionada) {
-                alert('Por favor completa todos los campos antes de continuar');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos incompletos',
+                    text: 'Por favor, asegúrate de completar todos los campos requeridos antes de continuar',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
 
@@ -848,7 +932,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 actualizarPrecios();
             } else {
-                alert('No se encontró ningún turno con ese número de reserva');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Turno no encontrado',
+                    text: 'No se encontró ningún turno asociado al número de reserva ingresado. Por favor, verifica el número e intenta nuevamente.',
+                    confirmButtonColor: '#726E60',
+                    confirmButtonText: 'Intentar de nuevo'
+                });
             }
         });
     }
