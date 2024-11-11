@@ -73,6 +73,9 @@ function recuperarDatosFormularioGuardado() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    configurarInputFecha('fecha-reserva');
+    configurarInputFecha('fecha-modificar');
+
     const formularioReserva = document.getElementById('form-reservar');
     if (!formularioReserva) return;
 
@@ -156,6 +159,39 @@ function actualizarPrecios() {
     document.getElementById('servicios-seleccionados').innerHTML = resumenHTML;
     document.getElementById('precio-total').textContent = `$${total.toLocaleString()}`;
     document.getElementById('precio-sena').textContent = `$${sena.toLocaleString()}`;
+}
+
+// reserva y modificacion de turnos (evita que se seleccione el domingo)
+function configurarInputFecha(inputId) {
+    const fechaInput = document.getElementById(inputId);
+    if (!fechaInput) return;
+
+    // Configuración del calendario
+    flatpickr(fechaInput, {
+        locale: 'es',
+        dateFormat: "d-m-y",
+        minDate: "today",
+        maxDate: new Date().fp_incr(180), // 6 meses hacia adelante
+        disable: [
+            function(date) {
+                return date.getDay() === 0; // deshabilita los domingos
+            }
+        ],
+        onChange: function(selectedDates, dateStr) {
+            if (window.horaSeleccionada) {
+                generarHorariosDisponibles(dateStr, window.horaSeleccionada);
+            } else {
+                generarHorariosDisponibles(dateStr);
+            }
+        },
+        disableMobile: false,
+        static: true,
+        animate: true,                    // Agrega animaciones suaves
+        monthSelectorType: 'static',      // Mejora la selección de meses
+        showMonths: 1,                    // Muestra un mes a la vez
+        prevArrow: '<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>',  // Flecha personalizada
+        nextArrow: '<svg viewBox="0 0 24 24"><path d="M8.59 7.41L10 6l6 6-6 6-1.41-1.41L13.17 12z"></path></svg>' // Flecha personalizada
+    });
 }
 
 // calcular duración total del turno
@@ -327,13 +363,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.getElementById('form-reservar')) {
         const fechaInput = document.getElementById('fecha-reserva');
-        const hoy = new Date().toISOString().split('T')[0];
+        /*const hoy = new Date().toISOString().split('T')[0];
         fechaInput.min = hoy;
         
         fechaInput.addEventListener('change', () => {
             generarHorariosDisponibles(fechaInput.value);
             guardarDatosFormulario();
-        });
+        });*/
 
         const nombreInput = document.getElementById('nombre-reserva');
         if (nombreInput) {
@@ -469,14 +505,14 @@ function modificarTurno(idReserva) {
 document.addEventListener('DOMContentLoaded', function() {
     const btnBuscarTurno = document.getElementById('buscar-turno');
     const btnConfirmarModificacion = document.getElementById('confirmar-modificacion');
-
+    /*
     if (document.getElementById('fecha-modificar')) {
         document.getElementById('fecha-modificar').addEventListener('change', function() {
             if (this.value) {
                 generarHorariosDisponibles(this.value, window.horaSeleccionada);
             }
         });
-    }
+    }*/
     // BUSCAR TURNO PARA MODIFICAR
     if (btnBuscarTurno) {
         btnBuscarTurno.addEventListener('click', function() {
@@ -544,8 +580,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     text: 'Tu turno ha sido modificado exitosamente. Te esperamos en la nueva fecha y horario seleccionados.',
                     confirmButtonColor: '#726E60',
                     confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'sacar-turno.html';
+                    }
                 });
-                window.location.href = 'sacar-turno.html';
             }
         });
     }
@@ -615,26 +654,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnConfirmarCancelacion) {
         btnConfirmarCancelacion.addEventListener('click', function() {
-            if (confirm('¿Estás seguro de que deseas cancelar este turno?')) {
-                if (cancelarTurno(idTurnoActual)) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Turno cancelado',
-                        text: 'Tu turno ha sido cancelado exitosamente. ¡Esperamos verte pronto nuevamente!',
-                        confirmButtonColor: '#726E60',
-                        confirmButtonText: 'Aceptar'
-                    });
-                    window.location.href = 'sacar-turno.html';
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error al cancelar',
-                        text: 'Hubo un problema al intentar cancelar el turno. Por favor, intenta nuevamente o contáctanos directamente.',
-                        confirmButtonColor: '#726E60',
-                        confirmButtonText: 'Intentar nuevamente'
-                    });
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas cancelar este turno?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#726E60',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, cancelar turno',
+                cancelButtonText: 'No, mantener turno'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (cancelarTurno(idTurnoActual)) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Turno cancelado',
+                            text: 'Tu turno ha sido cancelado exitosamente. ¡Esperamos verte pronto nuevamente!',
+                            confirmButtonColor: '#726E60',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'sacar-turno.html';
+                            }
+                        });
+                    }
                 }
-            }
+            });
         });
     }
 });

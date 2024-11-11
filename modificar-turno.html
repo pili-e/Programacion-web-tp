@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">  <!-- font Awesome -->
     <link rel="stylesheet" href="peluqueriastyle.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 </head>
 <body>
     <div class="anuncio" id="anuncio"></div>
@@ -161,7 +164,10 @@
                             <div class="seleccion-turno-container">
                                 <div class="fecha-selector">
                                     <label for="fecha-modificar">Nueva fecha:</label>
-                                    <input type="date" id="fecha-modificar">
+                                    <input type="text" 
+                                    id="fecha-reserva" 
+                                    placeholder="Selecciona una fecha"
+                                    class="flatpickr">
                                 </div>
                                 
                                 <div class="horarios-disponibles">

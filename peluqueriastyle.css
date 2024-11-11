@@ -1269,6 +1269,83 @@ html {
     color: var(--color-texto);
 }
 
+
+/* Estilos para Flatpickr */
+.flatpickr-calendar {
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+}
+
+.flatpickr-day {
+  border-radius: 4px;
+  color: #333;
+  font-weight: 500;
+}
+
+.flatpickr-day.selected {
+  background: #726E60;
+  border-color: #726E60;
+}
+
+.flatpickr-day:hover {
+  background: #f0f0f0;
+  border-color: transparent;
+}
+
+.flatpickr-day.disabled {
+  color: #ccc;
+  text-decoration: none;
+  background: transparent;
+}
+
+.flatpickr-months .flatpickr-month {
+  color: #333;
+}
+
+.flatpickr-current-month {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.flatpickr-weekday {
+  color: #726E60;
+  font-weight: 500;
+}
+
+.flatpickr-months .flatpickr-prev-month, 
+.flatpickr-months .flatpickr-next-month {
+  color: #726E60;
+  fill: #726E60;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover, 
+.flatpickr-months .flatpickr-next-month:hover {
+  color: #5c5950;
+  fill: #5c5950;
+}
+
+/* Estilo para el input */
+.flatpickr {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.flatpickr:focus {
+  outline: none;
+  border-color: #726E60;
+  box-shadow: 0 0 0 2px rgba(114, 110, 96, 0.1);
+}
+
+
+
+
 @media (max-width: 768px) {
     .beneficios-grid,
     .servicios-grid {
