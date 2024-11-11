@@ -102,27 +102,32 @@ setInterval(cambiarMensaje, 5000);
 
 // carrusel 
 let carrusel = document.querySelector('.carrusel');
-let index = 0;
 
-if (carrusel) {  // Solo ejecutar si existe el carrusel
-    function mostrarSiguienteImagen() {
-        const slides = carrusel.children.length - 2;
-        index = (index + 2) % slides;
-        carrusel.style.transform = `translateX(-${index * 50}%)`;
-        
-        if (index >= slides - 2) {
+if (carrusel) {
+    // Duplicar todas las imágenes para crear un ciclo continuo
+    const slides = carrusel.innerHTML;
+    carrusel.innerHTML = slides + slides; // Duplicamos el contenido
+
+    let position = 0;
+    const slideWidth = 40; // Cada slide ocupa el 50% del ancho
+
+    function moverCarrusel() {
+        position -= slideWidth;
+        carrusel.style.transition = 'transform 1s ease-in-out';
+        carrusel.style.transform = `translateX(${position}%)`;
+
+        // Cuando llegamos al final del primer conjunto de imágenes
+        if (position <= -slideWidth * (carrusel.children.length / 2)) {
+            // Reiniciamos la posición sin transición
             setTimeout(() => {
                 carrusel.style.transition = 'none';
-                index = 0;
-                carrusel.style.transform = `translateX(0)`;
-                setTimeout(() => {
-                    carrusel.style.transition = 'transform 1s ease-in-out';
-                }, 50);
+                position = 0;
+                carrusel.style.transform = `translateX(${position}%)`;
             }, 1000);
         }
     }
 
-    setInterval(mostrarSiguienteImagen, 4000);
+    setInterval(moverCarrusel, 4000);
 }
 
 function actualizarPrecios() {

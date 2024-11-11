@@ -101,20 +101,20 @@ html {
 
 .carrusel {
   display: flex;
-  transition: transform 1s ease-in-out;
   width: 100%;
+  height: 100%;
 }
 
 .slide {
-  min-width: 33.33%;
-  transition: transform 1s ease;
+  min-width: 50%;
+  height: 100%;
+  flex-shrink: 0;
 }
 
 .slide img {
   width: 100%;
-  height: 600px;
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 
@@ -125,27 +125,52 @@ html {
 
 /* SECCIÓN MARCAS */
 .productos {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 60px 20px;
   text-align: center;
-  gap: 15px;
-  margin-top: 100px;
+  background-color: white;
+  margin-top: 40px;
 }
 
 .productos p {
-  font-size: 24px;
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: var(--color-terciario);
+  color: var(--color-primario);
+  font-size: 1.8em;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+.productos p::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-secundario);
+}
+
+.productos-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .productos-logos img {
-  width: 200px; 
-  height: 200px;
-  object-fit: contain; 
-  margin: 0 10px;  
-  transition: transform 0.3s ease-in-out;
+  max-width: 200px;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.productos-logos img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
 }
 
 
@@ -385,7 +410,7 @@ html {
 /* FOOTER */
 .footer {
   background-color: var(--color-fondo);
-  color: white;
+  color: var(--color-terciario);
   padding: 40px 0 20px;
   margin-top: 50px;
   position: relative; 
@@ -407,7 +432,10 @@ html {
 }
 
 .footer-section h3 {
-  color: var(--color-terciario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espacio entre el texto y el ícono */
   margin-bottom: 20px;
   font-size: 1.2em;
 }
@@ -417,16 +445,8 @@ html {
   color: var(--color-terciario);
 }
 
-.social-links a {
-  color: var(--color-terciario);
-  margin-right: 15px;
-  font-size: 1.5em;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-  color: var(--color-texto);
+.social-links {
+  display: none; /* Ya no necesitamos esta sección */
 }
 
 .footer-bottom {
@@ -1177,7 +1197,7 @@ html {
 }
 
 .por-que-elegirnos {
-    padding: 60px 20px;
+    padding: 40px 20px;
     background-color: var(--color-fondo);
     text-align: center;
 }
@@ -1187,17 +1207,30 @@ html {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 60px auto 20px;
 }
 
 .beneficio {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
 }
 
 .beneficio i {
     font-size: 2.5em;
     color: var(--color-primario);
+    margin-bottom: 20px;
+}
+
+.beneficio h4 {
     margin-bottom: 15px;
+}
+
+.beneficio p {
+    margin: 0;
 }
 
 .servicios-destacados {
@@ -1255,4 +1288,14 @@ html {
         grid-template-columns: 1fr;
         padding: 0 20px;
     }
+}
+
+.footer-section h3 a {
+    color: var(--color-terciario);
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.footer-section h3 a:hover {
+    color: var(--color-secundario);
 }
