@@ -46,10 +46,10 @@ function recuperarDatosFormularioGuardado() {
     const fechaInput = document.getElementById('fecha-reserva');
     const serviciosInputs = document.querySelectorAll('input[name="servicios"]');
 
-    // Recuperar datos guardados
+    // recuperar datos guardados
     const datosGuardados = JSON.parse(localStorage.getItem('datosFormulario') || '{}');
 
-    // Solo establecer valores si los elementos existen
+    // solo establecer valores si los elementos existen
     if (nombreInput && datosGuardados.nombre) {
         nombreInput.value = datosGuardados.nombre;
     }
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     recuperarDatosFormularioGuardado();
 
-    // Guardar datos cuando cambian
+    // guardar datos cuando cambian
     formularioReserva.addEventListener('change', function() {
         const nombreInput = document.getElementById('nombre-reserva');
         const fechaInput = document.getElementById('fecha-reserva');
@@ -104,21 +104,17 @@ setInterval(cambiarMensaje, 5000);
 let carrusel = document.querySelector('.carrusel');
 
 if (carrusel) {
-    // Duplicar todas las imágenes para crear un ciclo continuo
     const slides = carrusel.innerHTML;
-    carrusel.innerHTML = slides + slides; // Duplicamos el contenido
+    carrusel.innerHTML = slides + slides;
 
     let position = 0;
-    const slideWidth = 40; // Cada slide ocupa el 50% del ancho
+    const slideWidth = 40;
 
     function moverCarrusel() {
         position -= slideWidth;
         carrusel.style.transition = 'transform 1s ease-in-out';
         carrusel.style.transform = `translateX(${position}%)`;
-
-        // Cuando llegamos al final del primer conjunto de imágenes
         if (position <= -slideWidth * (carrusel.children.length / 2)) {
-            // Reiniciamos la posición sin transición
             setTimeout(() => {
                 carrusel.style.transition = 'none';
                 position = 0;
@@ -172,12 +168,10 @@ function calcularDuracionTotal() {
 }
 
 function seleccionarHorario(boton, hora) {
-    // Remover la clase 'seleccionado' de todos los botones
     document.querySelectorAll('.horario-btn').forEach(btn => {
         btn.classList.remove('seleccionado');
     });
     
-    // Agregar la clase 'seleccionado' al botón clickeado
     boton.classList.add('seleccionado');
     window.horaSeleccionada = hora;
     guardarDatosFormulario();
@@ -288,7 +282,7 @@ function recuperarDatosFormulario() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Solo ejecutar si estamos en la página de reserva
+    // solo ejecutar si estoy en la página de reserva
     if (document.getElementById('form-reservar')) {
         recuperarDatosFormulario();
     }
@@ -298,12 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
             actualizarPrecios();
             const fechaInput = document.getElementById('fecha-reserva');
             if (fechaInput.value) {
-                // Guardamos el horario seleccionado antes de regenerar
+                // guardo el horario seleccionado antes de regenerar
                 const horarioSeleccionado = document.querySelector('.horario-btn.seleccionado')?.dataset.hora;
                 
                 generarHorariosDisponibles(fechaInput.value);
                 
-                // Restauramos la selección después de regenerar
+                // restauro la selección después de regenerar
                 if (horarioSeleccionado) {
                     document.querySelectorAll('.horario-btn').forEach(btn => {
                         if (btn.dataset.hora === horarioSeleccionado) {
@@ -368,7 +362,7 @@ function buscarReserva(id) {
     return turnosReservados.find(turno => turno.id === id);
 }
 
-// cargar los datos de la reserva encontrada
+// cargo los datos de la reserva encontrada
 function cargarDatosReserva(reserva) {
     if (!reserva) {
         Swal.fire({
@@ -419,7 +413,7 @@ function cargarDatosReserva(reserva) {
     return true;
 }
 
-// guardar las modificaciones
+// guardo las modificaciones
 function guardarModificaciones(idReserva) {
     const reservaIndex = turnosReservados.findIndex(turno => turno.id === idReserva);
     if (reservaIndex === -1) return false;
@@ -518,11 +512,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const turnoEncontrado = turnosGuardados.find(turno => turno.id === idReserva);
 
             if (turnoEncontrado) {
-                // Mostrar el resumen y el formulario
+                // mostrar el resumen y el formulario
                 document.getElementById('resumen-turno-actual').style.display = 'block';
                 document.getElementById('modificar-detalles').style.display = 'block';
                 
-                // Actualizar el contenido del resumen
+                // actualizar el contenido del resumen
                 document.getElementById('resumen-turno-actual').innerHTML = `
                     <h4>Detalles del Turno Actual</h4>
                     <p><strong>Número de Reserva:</strong> ${turnoEncontrado.id}</p>
@@ -538,12 +532,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="fw-bold">Total: $${turnoEncontrado.servicios.reduce((sum, s) => sum + s.precio, 0).toLocaleString()}</p>
                 `;
 
-                // Pre-seleccionar los servicios actuales
+                // pre-seleccionar los servicios actuales
                 document.querySelectorAll('input[name="servicios"]').forEach(checkbox => {
                     checkbox.checked = turnoEncontrado.servicios.some(s => s.valor === checkbox.value);
                 });
 
-                // Establecer la fecha actual
+                // establecer la fecha actual
                 const fechaInput = document.getElementById('fecha-modificar');
                 if (fechaInput) {
                     fechaInput.value = turnoEncontrado.fecha;
@@ -829,11 +823,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // confirmacion del pago
 document.addEventListener('DOMContentLoaded', function() {
-    // Manejo de la página de confirmación de pago
     if (window.location.pathname.includes('confirmar-pago.html')) {
         const turnoTemporal = JSON.parse(localStorage.getItem('turnoTemporal'));
         
-        // Mostrar resumen del turno
+        // mostrar resumen del turno
         if (turnoTemporal) {
             document.getElementById('resumen-turno').innerHTML = `
                 <div class="mb-3">
@@ -854,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        // Manejo del formulario de pago
+        // manejo del formulario de pago
         const formularioPago = document.getElementById('formulario-pago');
         if (formularioPago) {
             formularioPago.addEventListener('submit', function(e) {
@@ -882,7 +875,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Formato de la fecha de vencimiento (MM/AA)
+            // formato de la fecha de vencimiento (MM/AA)
             const inputFecha = formularioPago.querySelector('input[placeholder="MM/AA"]');
             inputFecha.addEventListener('input', function(e) {
                 let valor = e.target.value.replace(/\D/g, '');
@@ -895,7 +888,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Agregar esta función para buscar y mostrar el turno
+// agregar esta función para buscar y mostrar el turno
 document.addEventListener('DOMContentLoaded', function() {
     const btnBuscarTurno = document.getElementById('buscar-turno');
     if (btnBuscarTurno) {
@@ -905,10 +898,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const turnoEncontrado = turnosGuardados.find(turno => turno.id === idReserva);
 
             if (turnoEncontrado) {
-                // Mostrar el contenedor de detalles
+                // mostrar el contenedor de detalles
                 document.getElementById('modificar-detalles').style.display = 'block';
                 
-                // Mostrar resumen del turno actual
+                // mostrar resumen del turno actual
                 document.getElementById('resumen-turno-actual').innerHTML = `
                     <p><strong>Número de Reserva:</strong> ${turnoEncontrado.id}</p>
                     <p><strong>Nombre:</strong> ${turnoEncontrado.nombre}</p>
@@ -923,12 +916,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="fw-bold">Total: $${turnoEncontrado.servicios.reduce((sum, s) => sum + s.precio, 0).toLocaleString()}</p>
                 `;
 
-                // Pre-seleccionar los servicios actuales
+                // pre-seleccionar los servicios actuales
                 document.querySelectorAll('input[name="servicios"]').forEach(checkbox => {
                     checkbox.checked = turnoEncontrado.servicios.some(s => s.valor === checkbox.value);
                 });
 
-                // Establecer la fecha actual
+                // establecer la fecha actual
                 const fechaInput = document.getElementById('fecha-modificar');
                 if (fechaInput) {
                     fechaInput.value = turnoEncontrado.fecha;
