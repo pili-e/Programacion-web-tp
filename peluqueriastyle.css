@@ -283,7 +283,6 @@ html {
   background-color: var(--color-secundario);
 }
 
-/* Estilos mejorados para formularios */
 .turnos {
   background-color: white;
   padding: 2.5rem;
@@ -435,7 +434,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Espacio entre el texto y el ícono */
+  gap: 10px; 
   margin-bottom: 20px;
   font-size: 1.2em;
 }
@@ -443,10 +442,6 @@ html {
 .footer-section p {
   margin: 10px 0;
   color: var(--color-terciario);
-}
-
-.social-links {
-  display: none; /* Ya no necesitamos esta sección */
 }
 
 .footer-bottom {
@@ -793,20 +788,19 @@ html {
   }
 
   .nav-link {
-      padding: 8px !important;  /* Reduce el padding en móvil */
-      font-size: 0.9em;  /* Reduce ligeramente el tamaño de fuente */
+      padding: 8px !important;  
+      font-size: 0.9em;  
   }
 
   .navbar-toggler {
-      padding: 4px 8px;  /* Ajusta el tamaño del botón hamburguesa */
-      margin-right: 0;  /* Elimina el margen derecho en móvil */
+      padding: 4px 8px; 
+      margin-right: 0;  
   }
 
   .container-fluid {
-      padding: 0;  /* Elimina el padding extra del contenedor */
+      padding: 0;  
   }
 
-  /* Mejora el espaciado del menú desplegable */
   .collapse.show {
       margin-top: 10px;
       background-color: var(--color-fondo);
@@ -1061,9 +1055,6 @@ html {
   font-size: 0.9em;
 }
 
-
-
-
 /* RESUMEN DEL TURNO */
 #resumen-turno ul {
     list-style: none;
@@ -1092,10 +1083,6 @@ html {
     color: var(--color-terciario);
     margin-bottom: 20px;
 }
-
-
-
-
 
 @media (max-width: 991px) {
   .container-header {
