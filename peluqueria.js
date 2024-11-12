@@ -429,6 +429,51 @@ function cancelarTurno(id) {
     return true;
 }
 
+function validarFechaVencimiento(fecha) {
+    const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+    if (!regex.test(fecha)) return false;
+    
+    const [mes, ano] = fecha.split('/');
+    const fechaActual = new Date();
+    const anoActual = fechaActual.getFullYear() % 100;
+    const mesActual = fechaActual.getMonth() + 1;
+    
+    const anoTarjeta = parseInt(ano);
+    const mesTarjeta = parseInt(mes);
+    
+    return (anoTarjeta > anoActual) || 
+           (anoTarjeta === anoActual && mesTarjeta >= mesActual);
+}
+
+// validacion datos pago tarjeta
+function validarNumeroTarjeta(numero) {
+    return /^\d{16}$/.test(numero);
+}
+
+function validarCVV(cvv) {
+    return /^\d{3}$/.test(cvv);
+}
+
+function validarNombreTarjeta(nombre) {
+    return /^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]{3,50}$/.test(nombre);
+}
+
+function formatearFechaInput(input) {
+    let valor = input.value.replace(/\D/g, '');
+    if (valor.length >= 2) {
+        valor = valor.slice(0,2) + '/' + valor.slice(2);
+    }
+    input.value = valor.slice(0,5);
+}
+
+function formatearNumeroTarjeta(input) {
+    let valor = input.value.replace(/\D/g, '');
+    input.value = valor.slice(0,16);
+}
+
+
+
+
 // FUNCIONES HANDLE: sirven de apoyo para el listener, dividen las acciones por tarea
 function handlePagoClick() {
     const nombre = document.getElementById('nombre-reserva')?.value;
@@ -582,30 +627,58 @@ function handleContinuarPago(e) {
 function handleSubmitPago(e) {
     e.preventDefault();
     
+    const numeroTarjeta = document.getElementById('numero-tarjeta').value.replace(/\s/g, '');
+    const fechaVencimiento = document.getElementById('fecha-vencimiento').value;
+    const cvv = document.getElementById('cvv').value;
+    const nombreTarjeta = document.getElementById('nombre-tarjeta').value;
+
+    let errores = [];
+
+    if (!validarNumeroTarjeta(numeroTarjeta)) {
+        errores.push('El número de tarjeta debe tener 16 dígitos numéricos');
+    }
+
+    if (!validarFechaVencimiento(fechaVencimiento)) {
+        errores.push('La fecha de vencimiento no es válida o está expirada');
+    }
+
+    if (!validarCVV(cvv)) {
+        errores.push('El código de seguridad debe tener 3 dígitos numéricos');
+    }
+
+    if (!validarNombreTarjeta(nombreTarjeta)) {
+        errores.push('El nombre en la tarjeta solo debe contener letras y espacios');
+    }
+
+    if (errores.length > 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error en el formulario',
+            html: errores.join('<br>'),
+            confirmButtonColor: '#726E60'
+        });
+        return;
+    }
+
     const turnoTemporal = JSON.parse(localStorage.getItem('turnoTemporal'));
     if (turnoTemporal) {
-        // guardo el turno en turnos reservados
-        guardarTurno(turnoTemporal);
-        
         const btnPagar = e.target.querySelector('button[type="submit"]');
         btnPagar.disabled = true;
         btnPagar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Procesando...';
 
-        // simulacion proceso de pago
         setTimeout(() => {
+            guardarTurno(turnoTemporal);
             Swal.fire({
                 icon: 'success',
                 title: '¡Pago exitoso!',
                 text: 'Tu turno ha sido confirmado. ¡Muchas gracias por confiar en nosotros!',
                 confirmButtonColor: '#726E60'
             }).then(() => {
-                // limpia el turno temporal 
                 localStorage.removeItem('turnoTemporal');
                 window.location.href = 'index.html';
             });
         }, 2000);
     } else {
-        // caso de que no haya turno temporal
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -962,6 +1035,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnConfirmarCancelacion) {
         btnConfirmarCancelacion.addEventListener('click', handleConfirmarCancelacion);
+    }
+
+    const fechaVencimiento = document.getElementById('fecha-vencimiento');
+    const numeroTarjeta = document.getElementById('numero-tarjeta');
+    const cvv = document.getElementById('cvv');
+    const formPago = document.getElementById('form-pago');
+
+    if (fechaVencimiento) {
+        fechaVencimiento.addEventListener('input', (e) => formatearFechaInput(e.target));
+    }
+
+    if (numeroTarjeta) {
+        numeroTarjeta.addEventListener('input', (e) => formatearNumeroTarjeta(e.target));
+    }
+
+    if (cvv) {
+        cvv.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
+        });
+    }
+
+    if (formPago) {
+        formPago.addEventListener('submit', handleSubmitPago);
     }
 });
 

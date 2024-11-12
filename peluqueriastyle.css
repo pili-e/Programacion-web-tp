@@ -1322,17 +1322,6 @@ html {
   box-shadow: 0 0 0 2px rgba(114, 110, 96, 0.1);
 }
 
-
-
-
-@media (max-width: 768px) {
-    .beneficios-grid,
-    .servicios-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-    }
-}
-
 .footer-section h3 a {
     color: var(--color-terciario);
     font-size: 1.2em;
@@ -1341,4 +1330,175 @@ html {
 
 .footer-section h3 a:hover {
     color: var(--color-secundario);
+}
+
+/* Mejoras generales para móviles */
+@media (max-width: 768px) {
+  .beneficios-grid,
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+  
+  /* Header y navegación */
+  .container-header {
+      padding: 10px 15px;
+  }
+
+  .nombre h1 {
+      font-size: 1.8em;
+      text-align: center;
+  }
+
+  .navbar-nav {
+      gap: 10px;
+      padding: 15px 0;
+  }
+
+  /* Carrusel y bienvenida */
+  .carrusel-container {
+      height: 300px;
+  }
+
+  .slide img {
+      height: 300px;
+  }
+
+  .bienvenida-contenido {
+      padding: 20px;
+  }
+
+  .bienvenida-contenido h2 {
+      font-size: 1.8em;
+  }
+
+  /* Servicios y beneficios */
+  .servicios-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 15px;
+  }
+
+  .servicio-card {
+      margin: 10px 15px;
+  }
+
+  .servicio-card img {
+      height: 180px;
+  }
+
+  .beneficios-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 15px;
+  }
+
+  /* Gestión de turnos */
+  .grid-turnos {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 0 15px;
+  }
+
+  .imagenes-turnos {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 0 15px;
+  }
+
+  .imagenes-turnos img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+  }
+
+  /* Formularios */
+  .turnos {
+      padding: 15px;
+      margin: 15px;
+  }
+
+  .servicios-container {
+      flex-direction: column;
+      padding: 15px;
+  }
+
+  /* Página de servicios */
+  .servicio-categoria {
+      flex-direction: column;
+      padding: 15px;
+  }
+
+  .servicio-imagen {
+      width: 100%;
+      margin: 15px 0;
+  }
+
+  .servicio-imagen img {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+  }
+
+  .servicio-info {
+      width: 100%;
+      text-align: center;
+  }
+
+  /* Página de confirmación de pago */
+  .card {
+      margin: 15px;
+  }
+
+  .row {
+      margin: 0;
+  }
+
+  /* Footer */
+  .footer-content {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+  }
+
+  .footer-section {
+      margin: 10px 0;
+  }
+
+  /* Botones y elementos interactivos */
+  .btn-pago {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+  }
+
+  .grid-horarios {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 8px;
+  }
+
+  .horario-btn {
+      padding: 8px;
+      font-size: 0.9em;
+  }
+}
+
+/* Ajustes específicos para pantallas muy pequeñas */
+@media (max-width: 375px) {
+  .nombre h1 {
+      font-size: 1.5em;
+  }
+
+  .bienvenida-contenido h2 {
+      font-size: 1.5em;
+  }
+
+  .servicio-card img {
+      height: 150px;
+  }
+
+  .footer-section h3 {
+      font-size: 1.1em;
+  }
 }
