@@ -1,6 +1,6 @@
 let HORARIO_APERTURA = 9;
 let HORARIO_CIERRE = 17;
-let MAX_CLIENTES_SIMULTANEOS = 4;
+MAX_CLIENTES_SIMULTANEOS = 4;
 let turnosIniciales = [
     {
         id: "RES-001",
@@ -24,6 +24,25 @@ function generarIdReserva() {
     const fecha = new Date();
     const random = Math.floor(Math.random() * 1000);
     return `RES-${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${random}`;
+}
+
+// FECHA EN MODIFICAR Y EN RESERVAR TURNO
+function configurarInputFecha(inputId) {
+    flatpickr(`#${inputId}`, {
+        locale: 'es',
+        minDate: 'today',
+        dateFormat: 'Y-m-d',
+        disable: [
+            function(date) {
+                return (date.getDay() === 0); // deshabilitar domingos
+            }
+        ],
+        onChange: function(selectedDates, dateStr) {
+            if (dateStr) {
+                generarHorariosDisponibles(dateStr);
+            }
+        }
+    });
 }
 
 //anuncio inicio
@@ -72,31 +91,6 @@ function recuperarDatosFormularioGuardado() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    configurarInputFecha('fecha-reserva');
-    configurarInputFecha('fecha-modificar');
-
-    const formularioReserva = document.getElementById('form-reservar');
-    if (!formularioReserva) return;
-
-    recuperarDatosFormularioGuardado();
-
-    // guardar datos cuando cambian
-    formularioReserva.addEventListener('change', function() {
-        const nombreInput = document.getElementById('nombre-reserva');
-        const fechaInput = document.getElementById('fecha-reserva');
-        const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios"]:checked'))
-            .map(input => input.value);
-
-        const datosFormulario = {
-            nombre: nombreInput?.value || '',
-            fecha: fechaInput?.value || '',
-            servicios: serviciosSeleccionados
-        };
-
-        localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
-    });
-});
 
 // anuncio
 
@@ -169,7 +163,7 @@ function configurarInputFecha(inputId) {
     // Configuración del calendario
     flatpickr(fechaInput, {
         locale: 'es',
-        dateFormat: "d-m-y",
+        dateFormat: "y-m-d",
         minDate: "today",
         maxDate: new Date().fp_incr(180), // 6 meses hacia adelante
         disable: [
@@ -217,13 +211,16 @@ function seleccionarHorario(boton, hora) {
     });
     
     boton.classList.add('seleccionado');
-    window.horaSeleccionada = hora;
-    guardarDatosFormulario();
+    window.horaSeleccionada = boton.dataset.hora;
+    if (document.getElementById('form-reservar')) { //dudoso
+        guardarDatosFormulario();
+    }
 }
 
 // generar horarios disponibles
 function generarHorariosDisponibles(fecha, horaPrevia = null) {
     const listaHorarios = document.getElementById('lista-horarios');
+    if (!listaHorarios) return;
     const duracionTurno = calcularDuracionTotal();
     
     if (duracionTurno === 0) {
@@ -277,20 +274,25 @@ function generarHorariosDisponibles(fecha, horaPrevia = null) {
 
 // guardar y recuperar datos del formulario
 function guardarDatosFormulario() {
-    // guardar servicios seleccionados
-    const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios"]:checked'))
-        .map(checkbox => checkbox.value);
-    sessionStorage.setItem('servicios', JSON.stringify(serviciosSeleccionados));
+    // Verificar si estamos en la página de reserva
+    const formularioReserva = document.getElementById('form-reservar');
+    if (!formularioReserva) return;
 
-    // guardar fecha y hora
-    const fecha = document.getElementById('fecha-reserva').value;
-    const hora = document.querySelector('.horario-btn.seleccionado')?.dataset.hora;
-    sessionStorage.setItem('fecha', fecha);
-    if (hora) sessionStorage.setItem('hora', hora);
+    // Obtener los elementos solo si estamos en la página correcta
+    const nombreInput = document.getElementById('nombre-reserva');
+    const fechaInput = document.getElementById('fecha-reserva');
+    const serviciosInputs = document.querySelectorAll('input[name="servicios"]:checked');
 
-    // guardar nombre si existe
-    const nombre = document.getElementById('nombre-reserva')?.value;
-    if (nombre) sessionStorage.setItem('nombre', nombre);
+    // Solo guardar si tenemos los elementos necesarios
+    if (nombreInput && fechaInput) {
+        const datosFormulario = {
+            nombre: nombreInput.value,
+            fecha: fechaInput.value,
+            servicios: Array.from(serviciosInputs).map(input => input.value)
+        };
+
+        localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+    }
 }
 
 function recuperarDatosFormulario() {
@@ -333,6 +335,21 @@ function recuperarDatosFormulario() {
 
 /* RESERVAR TURNO */
 document.addEventListener('DOMContentLoaded', () => {
+    // Configurar los inputs de fecha al inicio
+    if (document.getElementById('fecha-reserva')) {
+        configurarInputFecha('fecha-reserva');
+    }
+
+    const serviciosInputs = document.querySelectorAll('input[name="servicios"]');
+    serviciosInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const formularioReserva = document.getElementById('form-reservar');
+            if (formularioReserva) {
+                guardarDatosFormulario();
+            }
+        });
+    });
+
     // solo ejecutar si estoy en la página de reserva
     if (document.getElementById('form-reservar')) {
         recuperarDatosFormulario();
@@ -340,9 +357,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('input[name="servicios"]').forEach(checkbox => {
         checkbox.addEventListener('change', () => {
+            // Primero verificar si estamos en la página de reserva
+        const formularioReserva = document.getElementById('form-reservar');
+        if (formularioReserva) {
             actualizarPrecios();
             const fechaInput = document.getElementById('fecha-reserva');
-            if (fechaInput.value) {
+            if (fechaInput?.value) {  // Usar el operador opcional
                 // guardo el horario seleccionado antes de regenerar
                 const horarioSeleccionado = document.querySelector('.horario-btn.seleccionado')?.dataset.hora;
                 
@@ -358,18 +378,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             guardarDatosFormulario();
-        });
+        } else {
+            // Si estamos en la página de modificación, solo actualizar precios
+            actualizarPrecios();
+        }
+    });
     });
 
     if (document.getElementById('form-reservar')) {
+        configurarInputFecha('fecha-reserva');
+        const formularioReserva = document.getElementById('form-reservar');
+        if (!formularioReserva) return;
+        recuperarDatosFormularioGuardado();
+
         const fechaInput = document.getElementById('fecha-reserva');
-        /*const hoy = new Date().toISOString().split('T')[0];
-        fechaInput.min = hoy;
-        
-        fechaInput.addEventListener('change', () => {
-            generarHorariosDisponibles(fechaInput.value);
-            guardarDatosFormulario();
-        });*/
 
         const nombreInput = document.getElementById('nombre-reserva');
         if (nombreInput) {
@@ -405,7 +427,7 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('horario-btn')) {
         e.preventDefault();
         seleccionarHorario(e.target, e.target.dataset.hora);
-        guardarDatosFormulario();
+        //guardarDatosFormulario();
     }
 });
 
@@ -503,16 +525,20 @@ function modificarTurno(idReserva) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('fecha-modificar')) {
+        configurarInputFecha('fecha-modificar');
+    }
+
     const btnBuscarTurno = document.getElementById('buscar-turno');
     const btnConfirmarModificacion = document.getElementById('confirmar-modificacion');
-    /*
+    
     if (document.getElementById('fecha-modificar')) {
         document.getElementById('fecha-modificar').addEventListener('change', function() {
             if (this.value) {
                 generarHorariosDisponibles(this.value, window.horaSeleccionada);
             }
         });
-    }*/
+    }
     // BUSCAR TURNO PARA MODIFICAR
     if (btnBuscarTurno) {
         btnBuscarTurno.addEventListener('click', function() {
@@ -552,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Establecer fecha y generar horarios (agregar estas líneas)
                 const fechaInput = document.getElementById('fecha-modificar');
                 if (fechaInput) {
-                    fechaInput.value = turnoEncontrado.fecha;
+                    fechaInput._flatpickr.setDate(turnoEncontrado.fecha);
                     window.horaSeleccionada = turnoEncontrado.hora; // Importante: guardar la hora actual
                     generarHorariosDisponibles(turnoEncontrado.fecha, turnoEncontrado.hora);
                 }
@@ -883,7 +909,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         Swal.fire({
                             icon: 'success',
                             title: '¡Pago exitoso!',
-                            text: 'Tu turno ha sido confirmado. Te enviamos un email con los detalles.',
+                            text: 'Tu turno ha sido confirmado. ¡Muchas gracias por confiar en nosotros!',
                             confirmButtonColor: '#726E60'
                         }).then(() => {
                             localStorage.removeItem('turnoTemporal');
